@@ -7,11 +7,15 @@ class Customer(models.Model):
     email = models.CharField(max_length=150)
     address = models.JSONField()
 
+class ProductCategory(models.Model):
+    name = models.CharField(max_length=150)
+
 class Product(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
     remaining_amount = models.IntegerField(default=0)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ManyToManyField(ProductCategory)
 
 class Cart(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -22,15 +26,6 @@ class CartItem(models.Model):
     cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     amount = models.IntegerField(default=1)
-
-class ProductCategory(models.Model):
-    name = models.CharField(max_length=150)
-
-class product_category(models.Model):
-    product_id = models.IntegerField(primary_key=True)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    category_id = models.IntegerField(primary_key=True)
-    category_id = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
 class Order(models.Model):
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -43,7 +38,7 @@ class OrderItem(models.Model):
     amount = models.IntegerField(default=1)
 
 class Payment(models.Model):
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, unique=True)
+    order_id = models.OneToOneField(Order, on_delete=models.CASCADE)
     payment_date = models.DateTimeField('date paid')
     remarks = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -51,7 +46,7 @@ class Payment(models.Model):
 
 class PaymentItem(models.Model):
     payment_id = models.ForeignKey(Payment, on_delete=models.CASCADE)
-    order_item_id = models.ForeignKey(Order, on_delete=models.CASCADE, unique=True)
+    order_item_id = models.OneToOneField(OrderItem, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
