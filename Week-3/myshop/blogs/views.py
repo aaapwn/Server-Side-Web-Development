@@ -6,7 +6,6 @@ from django.utils import timezone
 
 def index(request):
     time = timezone.localtime() + timedelta(days=500)
-    day =["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-    return HttpResponse(str(time) + " | " + day[time.weekday()])
+    s = time.strftime("%A -%d/%m/%Y, %H:%M:%S")
+    return HttpResponse(str(s))
 
