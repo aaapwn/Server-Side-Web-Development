@@ -88,7 +88,7 @@
             {% for position in positions %}
             <div class="item">
                 <!-- position id และ ชื่อตำแหน่ง -->
-                <div>{{ position.id }}. {{position.name}}</div>
+                <div>{{ position.id }}. {{ position.name }}</div>
 
                 <!-- จำนวนพนักงานทั้งหมด -->
                 <div class="action">{{ position.employee_position.all.count }} People</div>
