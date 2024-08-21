@@ -9,5 +9,6 @@ git clone https://github.com/it-web-pro/django-week5.git aj-week5
 git clone https://github.com/it-web-pro/django-week6.git aj-week6
 git clone https://github.com/it-web-pro/django-week7.git aj-week7
 git clone https://github.com/it-web-pro/django-week8.git aj-week8
+code .
 
 ```
