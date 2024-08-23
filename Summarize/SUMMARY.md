@@ -11,6 +11,8 @@
 * [Datetime](datetime.md)
 * [View](view/README.md)
   * [The request](view/the-request.md)
+  * [csrf\_token](view/csrf\_token.md)
+  * [Fetch JavaScript](view/fetch-javascript.md)
 * [Template](template/README.md)
   * [Layout](template/layout.md)
   * [Static](template/static.md)
