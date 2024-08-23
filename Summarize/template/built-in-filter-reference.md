@@ -13,8 +13,6 @@
 ไม่ใช่ว่าฟังก์ชันที่ python มีแล้วจะเอามาใช้แบบนี้ได้ ต้องใช้เฉพาะที่ Django มีให้เท่านั้น อันนี้แค่เปรียบเทียบให้เห็นภาพเฉย ๆ น้า (ปกติ python มีฟังก์ชัน length มั้ยหล่ะ)
 {% endhint %}
 
-***
-
 <pre class="language-python"><code class="lang-python"># ห้ามมี white space ตอนใช้ django filter เด็ดขาด !!!
 
 {{ value<a data-footnote-ref href="#user-content-fn-1"> </a>|<a data-footnote-ref href="#user-content-fn-2"> </a>length }} # error
@@ -23,6 +21,8 @@
 {{ value|truncatechars:<a data-footnote-ref href="#user-content-fn-3"> </a>7 }} # error
 {{ value|truncatechars:7 }} # no error
 </code></pre>
+
+***
 
 ## add
 
