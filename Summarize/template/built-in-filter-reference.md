@@ -15,7 +15,7 @@
 
 ***
 
-<pre><code># ห้ามมี white space ตอนใช้ django filter เด็ดขาด !!!
+<pre class="language-python"><code class="lang-python"># ห้ามมี white space ตอนใช้ django filter เด็ดขาด !!!
 
 {{ value<a data-footnote-ref href="#user-content-fn-1"> </a>|<a data-footnote-ref href="#user-content-fn-2"> </a>length }} # error
 {{ value|length }} # no error
