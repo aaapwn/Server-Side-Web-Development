@@ -15,6 +15,15 @@
 
 ***
 
+<pre><code># ห้ามมี white space ตอนใช้ django filter เด็ดขาด !!!
+
+{{ value<a data-footnote-ref href="#user-content-fn-1"> </a>|<a data-footnote-ref href="#user-content-fn-2"> </a>length }} # error
+{{ value|length }} # no error
+
+{{ value|truncatechars:<a data-footnote-ref href="#user-content-fn-3"> </a>7 }} # error
+{{ value|truncatechars:7 }} # no error
+</code></pre>
+
 ## add
 
 เป็น filter ที่ใช้เพิ่มค่าจาก value เดิม โดยวิธีใช้คือ
@@ -154,3 +163,9 @@ Keyword มันไม่เหมือน `strftime` นะ อย่าง�
 {{ 45000|intcomma }}
 # output จะเป็น 45,000 (ทำให้มนุษย์อ่านได้ง่ายขึ้น)
 </code></pre>
+
+[^1]: whitespace
+
+[^2]: whitespace
+
+[^3]: whitespace
