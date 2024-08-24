@@ -180,7 +180,7 @@ customer_get[0].first_name
 
 บางครั้งการ Query ข้อมูจำเป็นจะต้องมีการเขียน Query ซับซ้อนขึ้น เช่น สร้างขึ้นในเดือนพฤษภาคม, อีเมลลงท้ายด้วย "@kmitl.ac.th" เป็นต้น ซึ่งเราสามารถใช้ field lookups เพื่อเขียนเงื่อนไขที่ซับซ้อนเหล่านี้ได้โดย field loopups จะมี
 
-<table><thead><tr><th width="158">Keyword</th><th>Description</th></tr></thead><tbody><tr><td>contains</td><td>ประกอบได้ด้วย</td></tr><tr><td>endswith</td><td>ขึ้นต้นด้วย</td></tr><tr><td>startswith</td><td>ลงท้ายด้วย</td></tr><tr><td>day</td><td>เช็ควัน (1-31)</td></tr><tr><td>month</td><td>เช็คเดือน (1-12)</td></tr><tr><td>year</td><td>เช็คปี</td></tr><tr><td>gt</td><td>มากกว่า</td></tr><tr><td>gte</td><td>มากกว่าหรือเท่ากับ</td></tr><tr><td>lt</td><td>น้อยกว่า</td></tr><tr><td>lte</td><td>น้อยกว่าหรือเท่ากับ</td></tr><tr><td>range</td><td>ระหว่าง (ใช้ได้กับ Integer หรือ Float เท่านั้น)</td></tr></tbody></table>
+<table><thead><tr><th width="158">Keyword</th><th>Description</th></tr></thead><tbody><tr><td>contains</td><td>ประกอบได้ด้วย</td></tr><tr><td>startswith</td><td>ขึ้นต้นด้วย</td></tr><tr><td>endswith</td><td>ลงท้ายด้วย</td></tr><tr><td>day</td><td>เช็ควัน (1-31)</td></tr><tr><td>month</td><td>เช็คเดือน (1-12)</td></tr><tr><td>year</td><td>เช็คปี</td></tr><tr><td>gt</td><td>มากกว่า</td></tr><tr><td>gte</td><td>มากกว่าหรือเท่ากับ</td></tr><tr><td>lt</td><td>น้อยกว่า</td></tr><tr><td>lte</td><td>น้อยกว่าหรือเท่ากับ</td></tr><tr><td>range</td><td>ระหว่าง (ใช้ได้กับ Integer หรือ Float เท่านั้น)</td></tr></tbody></table>
 
 โดยวิธีใช้ keywords เหล่านี้เราสามารถใช้โดยการ `[attribute]__[keywords]` เช่น  ต้องการราคามากกว่า n คือ`price__gt`
 
