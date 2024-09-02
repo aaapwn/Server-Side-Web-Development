@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+
+{% block title %}Employee{% endblock %}
+
+{% block head %}
+<h1>Employee</h1>
+<div class>
+  <h1>Total {{ employees.count }} People</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div>
+  <br>
+  <!-- กำหนด path ไปยังหน้า form เพิ่มพนักงาน -->
+  <a href="{% url 'employee-register' %}"><button class="newemp">New Employee</button></a>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Genger</th>
+      <th>Birth Date</th>
+      <th>Hire Date</th>
+      <th>Salary</th>
+      <th>Department</th>
+      <th>Position</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for employee in employees %}
+    {% if forloop.first or forloop.last %}
+    <tr style="color: red;">
+    {% else %}
+    <tr>
+    {% endif %}
+      <!-- employee id -->
+      <td>{{ employee.id }}</td>
+      <!-- ชื่อ นามสกุล -->
+      <td>{{ employee.get_full_name }}</td>
+      <!-- เพศ -->
+      <td>
+        {% if employee.gender == 'M' %}
+        Male
+        {% elif employee.gender == 'F' %}
+        Female
+        {% else %}
+        Other
+        {% endif %}
+      </td>
+      <!-- วันเกิด -->
+      <td>{{ employee.birth_date|date:"d/m/Y" }}</td>
+      <!-- วันเริ่มงาน -->
+      <td>{{ employee.hire_date|date:"d/m/Y" }}</td>
+      <!-- เงินเดือน -->
+      <td>{{ employee.salary|intcomma }}</td>
+      <!-- แผนก -->
+      <td>{{ employee.position.department.name }}</td>
+      <!-- ตำแหน่งงาน -->
+      <td>{{ employee.position.name }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="8" style="text-align: center;">No Employee</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
