@@ -12,8 +12,8 @@ class EmployeeForm(forms.Form):
     gender = forms.ChoiceField(
         choices=GENDER_CHOICES
     )
-    birth_date = forms.DateField(widget=forms.DateInput())
-    hire_date = forms.DateField(widget=forms.DateInput())
+    birth_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    hire_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     salary = forms.DecimalField(max_digits=10, decimal_places=2)
     position = forms.ModelChoiceField(
         queryset=Position.objects.all(),

@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}Project Detail{% endblock %}
+
+{% block head %}
+<h1>Project Detail</h1>
+{% endblock %}
+
+{% block content %}
+<div>
+    <form class="form" action="{% url 'project-edit' id %}" id="project-form" method="post" style="margin-top: 15px; width: 100%;">
+        
+        {% csrf_token %}
+        <div class="" style="display: flex; gap: 10px">
+            <div class="div-name" style="width: 500px;">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+            </div>
+
+            <div class="div-start-date">
+                {{ form.start_date.label_tag }}
+                {{ form.start_date }}
+            </div>
+
+            <div class="div-due-date">
+                {{ form.due_date.label_tag }}
+                {{ form.due_date }}
+            </div>
+        </div>
+
+
+        <!-- label, form.description -->
+        <div class="div-description">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+        </div>
+
+        <!-- label, form.manager -->
+        <div class="div-manager">
+            {{ form.manager.label_tag }}
+            {{ form.manager }}
+        </div>
+
+        <!-- label, form.staff -->
+        <div class="div-staff">
+            {{ form.staff.label_tag }}
+            {{ form.staff }}
+        </div>
+
+        <button type="submit" style="width: 80px;">Save</button>
+    </form>
+</div>
+
+<br />
+<br />
+
+<div>
+    <div class="head">
+        <h2>Employee in this project</h2>
+    </div>
+    <div class="itemGroup">
+        {% for employee in project.staff.all %}
+        <div class="item">
+            <!-- id ของพนักงาน ชื่อ นามสกุล -->
+            <div>
+                {{ employee.id }}. {{ employee.first_name }} {{ employee.last_name }}
+            </div>
+            <!-- position name -->
+            <div>
+                {{ employee.position.name }}
+            </div>
+
+            <div class="action">
+                <!-- path สำหรับ ลบพนักงานออกจาก project ใช้ method GET ใน View -->
+                <a href="{% url 'manage-staff' project.id employee.id %}"><button class="delete">Kick Staff</button></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
