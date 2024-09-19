@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Position{% endblock %}
+
+{% block head %}
+<h1>Position</h1>
+{% endblock %}
+
+{% block content %}
+<div class="itemGroup">
+  {% for position in positions %}
+  <div class="item">
+    <div>{{ position.id }}. {{ position.name }}</div>
+
+    <div class="action">{{ position.employee_position.all.count }} People</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,8 +1,10 @@
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views import View
-from .models import *
+from employee.models import *
+from company.models import *
 from .forms import EmployeeForm, ProjectFrom
+from django.db import transaction
 # Create your views here.
 
 class Index(View):
@@ -12,6 +14,8 @@ class Index(View):
 class EmployeeView(View):
     def get(self, request):
         employees = Employee.objects.all().order_by("-hire_date")
+        for employee in employees:
+            employee.position = Position.objects.get(pk=employee.position_id)
         return render(request, "employee.html", {"employees": employees})
 
 class EmployeeRegister(View):
@@ -19,10 +23,21 @@ class EmployeeRegister(View):
         form = EmployeeForm()
         return render(request, "employee_form.html", {"form": form})
 
+    @transaction.atomic
     def post(self, request):
         form = EmployeeForm(request.POST)
+        # print(form)
         if form.is_valid():
-            form.save()
+            new_emp = form.save()
+            new_emp.position_id = form.cleaned_data.get("position").id
+            new_emp.save()
+            EmployeeAddress.objects.create(
+                employee=new_emp,
+                location=form.cleaned_data.get("location"),
+                district=form.cleaned_data.get("district"),
+                province=form.cleaned_data.get("province"),
+                postal_code=form.cleaned_data.get("postal_code")
+            )
             return redirect("employee-list")
         else:
             return render(request, "employee_form.html", {"form": form})
